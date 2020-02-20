@@ -44,6 +44,8 @@ Window {
         anchors.topMargin: 11
         anchors.right: parent.right
         anchors.rightMargin: 12
+
+        onClicked: workingTimer.source = './pages/WorkingTimer.qml'
     }
 
     Button {
@@ -64,5 +66,9 @@ Window {
         anchors.topMargin: 11
         anchors.right: parent.right
         anchors.rightMargin: 12
+    }
+
+    Loader {
+        id: workingTimer
     }
 }

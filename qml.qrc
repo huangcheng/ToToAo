@@ -7,5 +7,7 @@
         <file>images/gaming_button.png</file>
         <file>images/learning_button.png</file>
         <file>images/working_button.png</file>
+        <file>pages/WorkingTimer.qml</file>
+        <file>images/working_timer_bg.jpg</file>
     </qresource>
 </RCC>
