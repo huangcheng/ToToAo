@@ -10,46 +10,50 @@ Window {
     title: qsTr('ToTo凹')
     color: '#F6F6F6'
 
-    Text {
+    Image {
+        anchors.fill: parent
+        source: './images/bg.png'
+    }
+
+    Image {
         id: slogan
-        color: '#707070'
-        text: qsTr('保护你的腰')
+        width: 208
+        height: 295
+        source: './images/slogan.png'
 
-        anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: 128
-        anchors.rightMargin: 29
-
-        font.pointSize: 48
+        anchors.topMargin: 21
+        anchors.right: parent.right
+        anchors.leftMargin: 12
     }
 
     Button {
         id: workingButton
-        text: qsTr('工作')
+        image: '../images/working_button.png'
 
         anchors.top: slogan.bottom
-        anchors.topMargin: 53
+        anchors.topMargin: 11
         anchors.right: parent.right
-        anchors.rightMargin: 61
+        anchors.rightMargin: 12
     }
 
     Button {
         id: learningButton
-        text: qsTr('学习')
+        image: '../images/learning_button.png'
 
         anchors.top: workingButton.bottom
-        anchors.topMargin: 27
+        anchors.topMargin: 11
         anchors.right: parent.right
-        anchors.rightMargin: 40
+        anchors.rightMargin: 12
     }
 
     Button {
         id: gamingButton
-        text: qsTr('游戏')
+        image: '../images/gaming_button.png'
 
         anchors.top: learningButton.bottom
-        anchors.topMargin: 39
+        anchors.topMargin: 11
         anchors.right: parent.right
-        anchors.rightMargin: 13
+        anchors.rightMargin: 12
     }
 }
