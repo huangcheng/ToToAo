@@ -7,8 +7,17 @@ Window {
     visible: true
     width: 375
     height: 637
+    minimumWidth: 375
+    minimumHeight: 637
+    maximumWidth: 375
+    maximumHeight: 637
     title: qsTr('ToTo凹')
     color: '#F6F6F6'
+    flags: Qt.CustomizeWindowHint |
+           Qt.WindowTitleHint |
+           Qt.WindowCloseButtonHint |
+           Qt.WindowMinimizeButtonHint
+
 
     Image {
         anchors.fill: parent
