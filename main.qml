@@ -2,6 +2,7 @@ import QtQuick 2.10
 import QtQuick.Window 2.10
 
 import './components'
+import './popups'
 
 Window {
     visible: true
@@ -17,6 +18,9 @@ Window {
            Qt.WindowTitleHint |
            Qt.WindowCloseButtonHint |
            Qt.WindowMinimizeButtonHint
+
+    property bool isSettingVisible: false
+    property string activityType: ''
 
 
     Image {
@@ -37,7 +41,7 @@ Window {
     }
 
     Button {
-        id: workingButton
+        id: gamingButton
         image: '../images/working_button.png'
 
         anchors.top: slogan.bottom
@@ -45,27 +49,64 @@ Window {
         anchors.right: parent.right
         anchors.rightMargin: 12
 
-        onClicked: workingTimer.source = './pages/WorkingTimer.qml'
+        onClicked: {
+            activityType = '游戏'
+
+            isSettingVisible = true
+        }
     }
 
     Button {
         id: learningButton
         image: '../images/learning_button.png'
 
-        anchors.top: workingButton.bottom
+        anchors.top: gamingButton.bottom
         anchors.topMargin: 11
         anchors.right: parent.right
         anchors.rightMargin: 12
+
+        onClicked: {
+            activityType = '学习'
+
+            isSettingVisible = true
+        }
     }
 
     Button {
-        id: gamingButton
+        id: workingButton
         image: '../images/gaming_button.png'
 
         anchors.top: learningButton.bottom
         anchors.topMargin: 11
         anchors.right: parent.right
         anchors.rightMargin: 12
+
+        onClicked: {
+            activityType = '工作'
+
+            isSettingVisible = true
+        }
+    }
+
+    Setting {
+        id: settingPopup
+        type: activityType
+        visible: isSettingVisible
+        anchors.centerIn: parent
+
+        onClosed: isSettingVisible = false
+        onConfirmed: {
+            console.log(activityDuration,
+                        restingDuration,
+                        frequency,
+                        isShaking,
+                        isAlerting)
+
+            isSettingVisible = false
+
+            workingTimer.source = './pages/WorkingTimer.qml'
+
+        }
     }
 
     Loader {
