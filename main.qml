@@ -22,6 +22,7 @@ Window {
            Qt.WindowMinimizeButtonHint
 
     property bool isSettingVisible: false
+    property bool isAboutVisible: false
     property bool isResting: false
     property string activityType: ''
 
@@ -85,6 +86,12 @@ Window {
         anchors.topMargin: 21
         anchors.right: parent.right
         anchors.leftMargin: 12
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: isAboutVisible = true
+        }
     }
 
     Button {
@@ -139,6 +146,7 @@ Window {
         id: settingPopup
         type: activityType
         visible: isSettingVisible
+
         anchors.centerIn: parent
 
         onClosed: isSettingVisible = false
@@ -156,6 +164,15 @@ Window {
         }
     }
 
+    About {
+        id: about
+        visible: isAboutVisible
+
+        anchors.centerIn: parent
+
+        onClosed: isAboutVisible = false
+    }
+
     Loader {
         id: timer
     }
@@ -168,6 +185,7 @@ Window {
 
             var duration = isResting ? restingDuration : activityDuration
             var title = isResting ? '休息' : activityType
+
 
             if (!isResting) {
                 --frequency

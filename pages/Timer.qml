@@ -15,6 +15,10 @@ Rectangle {
         var m = Math.floor(d % 3600 / 60);
         var s = Math.floor(d % 3600 % 60);
 
+        h = h < 0 ? 0 : h
+        m = m < 0 ? 0 : m
+        s = s < 0 ? 0 : s
+
         h = h < 10 ? '0' + h : h
         m = m < 10 ? '0' + m : m
         s = s < 10 ? '0' + s : s
@@ -28,7 +32,7 @@ Rectangle {
     }
 
     Image {
-        source: '../images/working_timer_bg.jpg'
+        source: '../images/timer_bg.jpg'
 
         anchors.fill: parent
     }
@@ -72,13 +76,13 @@ Rectangle {
         interval: 1000
         repeat: true
         onTriggered: {
-            --duration
-
             if (duration <= 0) {
                 timer.running = false;
 
                 fired()
             }
+
+            --duration
         }
     }
 

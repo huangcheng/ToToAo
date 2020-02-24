@@ -29,4 +29,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
- macx: ICON = ./resources/ToToAo.icns
+ICON = ./resources/ToToAo.icns
+RC_FILE = ./resources/resource.rc
+
+HEADERS += \
+    version.h

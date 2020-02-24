@@ -8,7 +8,6 @@
         <file>images/learning_button.png</file>
         <file>images/working_button.png</file>
         <file>pages/Timer.qml</file>
-        <file>images/working_timer_bg.jpg</file>
         <file>fonts/PangMenZhengDao.ttf</file>
         <file>images/close.png</file>
         <file>components/Input.qml</file>
@@ -17,5 +16,8 @@
         <file>modals/Setting.qml</file>
         <file>fonts/Roboto.ttf</file>
         <file>sounds/alarm.wav</file>
+        <file>modals/About.qml</file>
+        <file>images/about.png</file>
+        <file>images/timer_bg.jpg</file>
     </qresource>
 </RCC>
