@@ -16,10 +16,6 @@ Window {
     maximumHeight: 637
     title: qsTr('ToTo凹')
     color: '#F6F6F6'
-    flags: Qt.CustomizeWindowHint |
-           Qt.WindowTitleHint |
-           Qt.WindowCloseButtonHint |
-           Qt.WindowMinimizeButtonHint
 
     property bool isSettingVisible: false
     property bool isAboutVisible: false
@@ -215,6 +211,16 @@ Window {
             }
 
             window.flags &= ~Qt.WindowStaysOnTopHint
+        }
+    }
+
+    Component.onCompleted: {
+        if (Qt.platform.os !== 'windows') {
+            window.flags = Qt.Window |
+                    Qt.CustomizeWindowHint |
+                    Qt.WindowTitleHint |
+                    Qt.WindowCloseButtonHint |
+                    Qt.WindowMinimizeButtonHint
         }
     }
 }
