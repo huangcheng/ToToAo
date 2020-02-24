@@ -1,10 +1,12 @@
 import QtQuick 2.10
 import QtQuick.Window 2.10
+import QtMultimedia 5.0
 
 import './components'
-import './popups'
+import './modals'
 
 Window {
+    id: window
     visible: true
     width: 375
     height: 637
@@ -20,8 +22,53 @@ Window {
            Qt.WindowMinimizeButtonHint
 
     property bool isSettingVisible: false
+    property bool isResting: false
     property string activityType: ''
 
+    property int activityDuration: 0
+    property int restingDuration: 0
+    property int frequency: 0
+    property bool isShaking: false
+    property bool isAlerting: false
+
+    SequentialAnimation {
+        id: shakingAnimation
+
+        property int x: window.x
+        property int y: window.y
+
+        NumberAnimation { target: window; property: 'x'; to: x - 3; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y - 3; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y - 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y + 6; duration: 25 }
+        NumberAnimation { target: window; property: 'x'; to: x - 3; duration: 25 }
+        NumberAnimation { target: window; property: 'y'; to: y - 3; duration: 25 }
+    }
+
+    SoundEffect {
+        id: sound
+        source: './sounds/alarm.wav'
+    }
+
+    function startTimer(type, duration) {
+        timer.setSource('./pages/Timer.qml',
+                        {
+                            type: type,
+                            duration: duration * 60
+
+                        }
+                        )
+    }
 
     Image {
         anchors.fill: parent
@@ -96,20 +143,60 @@ Window {
 
         onClosed: isSettingVisible = false
         onConfirmed: {
-            console.log(activityDuration,
-                        restingDuration,
-                        frequency,
-                        isShaking,
-                        isAlerting)
+            window.activityDuration = activityDuration
+            window.restingDuration = restingDuration
+            window.frequency = frequency
+            window.isShaking = isShaking
+            window.isAlerting = isAlerting
 
             isSettingVisible = false
 
-            workingTimer.source = './pages/WorkingTimer.qml'
+            startTimer(activityType, activityDuration)
 
         }
     }
 
     Loader {
-        id: workingTimer
+        id: timer
+    }
+
+    Timer {
+        id: clock
+        interval: 1000
+        onTriggered: {
+            isResting = !isResting
+
+            var duration = isResting ? restingDuration : activityDuration
+            var title = isResting ? '休息' : activityType
+
+            if (!isResting) {
+                --frequency
+            }
+
+            if (frequency >= 0) {
+                startTimer(title, duration)
+            } else {
+                timer.source = ''
+            }
+        }
+    }
+
+    Connections {
+        target: timer.item
+        onFired: {
+            window.flags |= Qt.WindowStaysOnTopHint
+
+            clock.start()
+
+            if (isShaking) {
+                shakingAnimation.start()
+            }
+
+            if (isAlerting) {
+                sound.play()
+            }
+
+            window.flags &= ~Qt.WindowStaysOnTopHint
+        }
     }
 }

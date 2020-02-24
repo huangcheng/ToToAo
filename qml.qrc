@@ -7,13 +7,15 @@
         <file>images/gaming_button.png</file>
         <file>images/learning_button.png</file>
         <file>images/working_button.png</file>
-        <file>pages/WorkingTimer.qml</file>
+        <file>pages/Timer.qml</file>
         <file>images/working_timer_bg.jpg</file>
-        <file>popups/Setting.qml</file>
         <file>fonts/PangMenZhengDao.ttf</file>
         <file>images/close.png</file>
         <file>components/Input.qml</file>
         <file>components/CheckBox.qml</file>
         <file>images/check.png</file>
+        <file>modals/Setting.qml</file>
+        <file>fonts/Roboto.ttf</file>
+        <file>sounds/alarm.wav</file>
     </qresource>
 </RCC>

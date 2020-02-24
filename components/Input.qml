@@ -10,7 +10,7 @@ Rectangle {
     property alias title: title.text
     property alias unit: unit.text
 
-    signal editingFinished(string text)
+    signal textChanged(string text)
 
     FontLoader {
         id: titleFont
@@ -42,7 +42,7 @@ Rectangle {
         anchors.left: title.right
         anchors.verticalCenter: parent.verticalCenter
 
-        onEditingFinished: parent.editingFinished(input.text)
+        onTextChanged: parent.textChanged(input.text)
     }
 
     Text {

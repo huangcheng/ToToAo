@@ -50,8 +50,8 @@ Rectangle {
 
     Input {
         id: activityInput
-        title: type + '时间:'
-        unit: '分'
+        title: qsTr(type + '时间:')
+        unit: qsTr('分')
         isFocus: true
 
 
@@ -59,36 +59,36 @@ Rectangle {
         anchors.topMargin: 15
         anchors.horizontalCenter: parent.horizontalCenter
 
-        onEditingFinished: activityDuration = parseInt(text, 10)
+        onTextChanged: activityDuration = parseInt(text, 10)
     }
 
     Input {
         id: restingInput
-        title: '休息时间:'
-        unit: '分'
+        title: qsTr('休息时间:')
+        unit: qsTr('分')
 
         anchors.top: activityInput.bottom
         anchors.topMargin: 13
         anchors.horizontalCenter: parent.horizontalCenter
 
-        onEditingFinished: restingDuration = parseInt(text, 10)
+        onTextChanged: restingDuration = parseInt(text, 10)
     }
 
     Input {
         id: frequencyInput
-        title: '提醒频次:'
-        unit: '次'
+        title: qsTr('提醒频次:')
+        unit: qsTr('次')
 
         anchors.top: restingInput.bottom
         anchors.topMargin: 13
         anchors.horizontalCenter: parent.horizontalCenter
 
-        onEditingFinished: frequency = parseInt(text, 10)
+        onTextChanged: frequency = parseInt(text, 10)
     }
 
     Text {
         id: notificationTitle
-        text: '提醒模式:'
+        text: qsTr('提醒模式:')
         color: '#FFF'
 
         font.family: titleFont.name
@@ -108,7 +108,7 @@ Rectangle {
 
         CheckBox {
             id: shakingCheckBox
-            text: '抖动'
+            text: qsTr('抖动')
 
             anchors.left: parent.left
             anchors.leftMargin: 43
@@ -119,7 +119,7 @@ Rectangle {
 
         CheckBox {
             id: soundCheckBox
-            text: '抖动'
+            text: qsTr('音乐')
 
             anchors.left: shakingCheckBox.right
             anchors.leftMargin: 15
@@ -129,7 +129,7 @@ Rectangle {
         }
 
         Text {
-            text: '无羁'
+            text: qsTr('无羁')
             color: '#FFF'
 
             font.family: titleFont.name
