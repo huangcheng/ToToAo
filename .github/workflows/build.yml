@@ -1,0 +1,19 @@
+name: build
+on:
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: 'Install dependencies'
+        run: 'sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev'
+      -
+        name: 'Install Qt'
+        uses: jurplel/install-qt-action@v2
+      -
+        name: 'Build project'
+        run: 'qmake -makefile && make'
