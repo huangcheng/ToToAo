@@ -1,10 +1,9 @@
 import QtQuick 2.10
 
-Rectangle {
+Item {
     id: root
     width: 266
     height: 300
-    color: 'transparent'
 
     signal closed()
 

@@ -6,6 +6,7 @@ Rectangle {
 
     property string type: ''
     property int duration: 0
+    property bool isPaused: false
 
     signal fired()
 
@@ -38,6 +39,7 @@ Rectangle {
     }
 
     Rectangle {
+        id: board
         color: 'transparent'
         width: 327
         height: 175
@@ -71,6 +73,23 @@ Rectangle {
         }
     }
 
+    MouseArea {
+        width: 78
+        height: 80
+
+        anchors.top: board.bottom
+        anchors.topMargin: 106
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        onClicked: isPaused = !isPaused
+
+        Image {
+            anchors.fill: parent
+
+            source: isPaused ? '../images/resume.png' : '../images/pause.png'
+        }
+    }
+
     Timer {
         id: timer
         interval: 1000
@@ -82,7 +101,9 @@ Rectangle {
                 fired()
             }
 
-            --duration
+            if (!isPaused) {
+                --duration
+            }
         }
     }
 

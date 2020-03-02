@@ -86,7 +86,11 @@ Window {
         MouseArea {
             anchors.fill: parent
 
-            onClicked: isAboutVisible = true
+            onClicked: {
+                if (!isAboutVisible && !isSettingVisible) {
+                    isAboutVisible = true
+                }
+            }
         }
     }
 
@@ -100,9 +104,11 @@ Window {
         anchors.rightMargin: 12
 
         onClicked: {
-            activityType = '游戏'
+            if (!isAboutVisible && !isSettingVisible) {
+                activityType = '游戏'
 
-            isSettingVisible = true
+                isSettingVisible = true
+            }
         }
     }
 
@@ -116,9 +122,11 @@ Window {
         anchors.rightMargin: 12
 
         onClicked: {
-            activityType = '学习'
+            if (!isAboutVisible && !isSettingVisible) {
+                activityType = '学习'
 
-            isSettingVisible = true
+                isSettingVisible = true
+            }
         }
     }
 
@@ -131,10 +139,12 @@ Window {
         anchors.right: parent.right
         anchors.rightMargin: 12
 
-        onClicked: {
-            activityType = '工作'
+        onClicked: {      
+            if (!isAboutVisible && !isSettingVisible) {
+                activityType = '工作'
 
-            isSettingVisible = true
+                isSettingVisible = true
+            }
         }
     }
 
