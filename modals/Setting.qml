@@ -127,18 +127,6 @@ Rectangle {
 
             onClicked: isAlerting = soundCheckBox.checked
         }
-
-        Text {
-            text: qsTr('无羁')
-            color: '#FFF'
-
-            font.family: titleFont.name
-            font.pixelSize: 12
-
-            anchors.right: parent.right
-            anchors.rightMargin: 41
-            anchors.verticalCenter: parent.verticalCenter
-        }
     }
 
     Rectangle {
