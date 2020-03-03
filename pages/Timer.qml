@@ -33,7 +33,7 @@ Rectangle {
     }
 
     Image {
-        source: '../images/timer_bg.jpg'
+        source: '../images/timer_bg.png'
 
         anchors.fill: parent
     }

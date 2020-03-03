@@ -96,7 +96,7 @@ Window {
 
     Button {
         id: gamingButton
-        image: '../images/working_button.png'
+        image: '../images/gaming_button.png'
 
         anchors.top: slogan.bottom
         anchors.topMargin: 11
@@ -132,7 +132,7 @@ Window {
 
     Button {
         id: workingButton
-        image: '../images/gaming_button.png'
+        image: '../images/working_button.png'
 
         anchors.top: learningButton.bottom
         anchors.topMargin: 11
